@@ -16,7 +16,7 @@ const original = "stepfor";
 const modified = "stepor";
 
 function findNaughtyStep(original, modified) {
-  let str = "vacio";
+  let str = "";
   if (typeof original !== "string" && typeof modified !== "string") {
     return str;
   }
@@ -26,18 +26,18 @@ function findNaughtyStep(original, modified) {
   if (typeof original === "string" && typeof modified !== "string") {
     return str;
   }
-  
+
   if (!original && modified) {
     return modified[0];
   }
-  
+
   if (!original && !modified) {
     return str;
   }
   if (original === "" && modified) {
     return modified[0];
   }
-  
+
   if (!modified) {
     return str;
   }
@@ -63,8 +63,9 @@ function findNaughtyStep(original, modified) {
 }
 
 //console.log(findNaughtyStep(original, modified)); // 'e'
+console.log(0, findNaughtyStep("abcd", "abcd")); // 'e'
 console.log(1, findNaughtyStep("abcd", "abcde")); // 'e'
-console.log(2, findNaughtyStep("", "abcd"));
+console.log(2, findNaughtyStep("abcd", "abd")); //c
 console.log(3, findNaughtyStep("", ""));
 console.log(4, findNaughtyStep("", "a"));
 console.log(5, findNaughtyStep(undefined, "hola"));
