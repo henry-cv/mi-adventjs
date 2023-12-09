@@ -26,7 +26,7 @@ function findNaughtyStep(original, modified) {
   if (typeof original === "string" && typeof modified !== "string") {
     return str;
   }
-
+  /*
   if (!original && modified) {
     return modified[0];
   }
@@ -43,28 +43,31 @@ function findNaughtyStep(original, modified) {
   }
   if (original === modified) {
     return str;
-  }
+  } */
 
   if (original.length > modified.length) {
-    let diff = original.split("").find((c) => !modified.includes(c));
+    let diff = original.split("").find(c => !modified.includes(c));
     str = diff;
+
   }
   //find retorna el primer elemento que cumpla la condición dentro del callback
   if (original.length < modified.length) {
-    let diff = modified.split("").find((c) => !original.includes(c));
+    let diff = modified.split("").find(c => !original.includes(c));
     str = diff;
   }
-  if (original.length === modified.length) {
-    let diff = modified.split("").find((c) => !original.includes(c));
+    if (original.length === modified.length) {
+    let diff = modified.split("").find(c => !original.includes(c));
     str = diff;
   }
   console.log(`modificado: ${str}`);
   return str;
 }
 
-//console.log(findNaughtyStep(original, modified)); // 'e'
-console.log(0, findNaughtyStep("abcd", "abcd")); // 'e'
+console.log(findNaughtyStep(original, modified)); // 'f'
+console.log(0, findNaughtyStep("abcd", "abcd")); // ''
 console.log(1, findNaughtyStep("abcd", "abcde")); // 'e'
+                /* const original = "stepfor";
+                   const modified = "stepor"; */
 console.log(2, findNaughtyStep("abcd", "abd")); //c
 console.log(3, findNaughtyStep("", ""));
 console.log(4, findNaughtyStep("", "a"));
