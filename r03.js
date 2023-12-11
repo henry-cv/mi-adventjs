@@ -17,57 +17,48 @@ const modified = "stepor";
 
 function findNaughtyStep(original, modified) {
   let str = "";
-  if (typeof original !== "string" && typeof modified !== "string") {
-    return str;
-  }
-  if (typeof original !== "string" && typeof modified === "string") {
-    return modified[0];
-  }
-  if (typeof original === "string" && typeof modified !== "string") {
-    return str;
-  }
-  /*
-  if (!original && modified) {
-    return modified[0];
-  }
-
-  if (!original && !modified) {
-    return str;
-  }
-  if (original === "" && modified) {
-    return modified[0];
-  }
-
-  if (!modified) {
-    return str;
-  }
-  if (original === modified) {
-    return str;
-  } */
-
-  if (original.length > modified.length) {
-    let diff = original.split("").find(c => !modified.includes(c));
-    str = diff;
-
-  }
-  //find retorna el primer elemento que cumpla la condición dentro del callback
-  if (original.length < modified.length) {
-    let diff = modified.split("").find(c => !original.includes(c));
-    str = diff;
-  }
+    
+  if (typeof original === "string" && typeof modified === "string") {
+    if (original === modified) {
+      return str;
+    }
+  
+    if (original.length > modified.length) {
+      let diff = original.split("").find(c => !modified.includes(c));
+      str = diff;
+      return str
+    }    
+    if (original.length < modified.length) {
+      let diff = modified.split("").find(c => !original.includes(c));
+      str = diff;
+      return str;
+    }
     if (original.length === modified.length) {
-    let diff = modified.split("").find(c => !original.includes(c));
-    str = diff;
-  }
-  console.log(`modificado: ${str}`);
-  return str;
+      let diff = modified.split("").find(c => !original.includes(c));
+      str = diff;
+      return str;
+    }
+    if(original === ""){
+      return modified[0];
+    }
+    //console.log(`modificado: ${str}`);
+    return str;  
+  }else{
+    if(original === modified){
+      return str;
+    }
+    if(typeof original !== "string" && typeof modified === "string"){
+      return modified[0];
+    }
+    if(typeof original === "string" && typeof modified !== "string"){
+      return original[0];
+    }
+  }   
 }
 
 console.log(findNaughtyStep(original, modified)); // 'f'
 console.log(0, findNaughtyStep("abcd", "abcd")); // ''
-console.log(1, findNaughtyStep("abcd", "abcde")); // 'e'
-                /* const original = "stepfor";
-                   const modified = "stepor"; */
+console.log(1, findNaughtyStep("abcd", "abcde")); // 'e'                
 console.log(2, findNaughtyStep("abcd", "abd")); //c
 console.log(3, findNaughtyStep("", ""));
 console.log(4, findNaughtyStep("", "a"));
@@ -79,4 +70,4 @@ console.log(9, findNaughtyStep("abcd", null));
 console.log(10, findNaughtyStep(null, null));
 console.log(11, findNaughtyStep("abcd", undefined));
 console.log(12, findNaughtyStep(1234, "abcd"));
-console.log(13, findNaughtyStep("abcd", "abmcde")); // 'm'
+console.log(13, findNaughtyStep("abcd", "abmcd")); // 'm'
